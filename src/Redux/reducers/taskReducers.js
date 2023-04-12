@@ -1,4 +1,4 @@
-import { ADD_TASK, COMPLETE_TASK } from "../actionTypes/actionTypes";
+import { ADD_TASK, COMPLETE_TASK, EDIT_TASK } from "../actionTypes/actionTypes";
 
 const initialState = {
     tasks : [
@@ -29,7 +29,21 @@ const taskReducers = (state=initialState, {type, payload}) => {
                     return {
                     ...state,
                     tasks: toggleTasks
-                } 
+                }
+                
+                case EDIT_TASK:
+                    const editedTasks = state.tasks.map(task => {
+                        if(task.id === payload.id){
+                            task.id = payload.id
+                            task.description = payload.description
+                            task.isDone = payload.isDone
+                        }
+                        return task
+                    })
+                    return {
+                        ...state,
+                        tasks: editedTasks
+                    }
 
         default:
           return state  
