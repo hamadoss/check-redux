@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux'
 import { completeTask, editTask } from '../Redux/actions/taskActions'
 
 const Task = ({task}) => {
-  const dispatch = useDispatch
+  const dispatch = useDispatch()
 
-  const [isEditing, setIsEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(task.description)
 
   const handleEdit = (e) => {
